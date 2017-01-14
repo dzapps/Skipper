@@ -41,4 +41,4 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
 	<script src="assets/js/custom.min.js?v=1.1"></script>
 </body>
-</html>	
+</html>
