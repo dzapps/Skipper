@@ -1,0 +1,77 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans');
+
+body{
+	background-image: url('../img/bg.jpg');
+	background-size: cover;
+	color: #FFF;
+	font-size: 15px;
+	font-weight: 300;
+	font-family: 'Open Sans', sans-serif;
+}
+a {
+	color: #E8643E;
+}
+a:hover, a:active, a:visited {
+	color: black;
+}
+.fa-fw {
+	width: 1.5em;
+	font-size: 17px;
+}
+.title {
+	margin-top: 75px;
+}
+.title > h1 {
+	font-size: 25px;
+	margin-bottom: 25px;
+}
+input[type="text"] {
+	color: #2c3e50;
+	width: 330px;
+	height: 50px;
+	margin: 0;
+    padding: 0 20px;
+	vertical-align: middle;
+	line-height: 50px;
+}
+.btn-action {
+	height: 50px;
+    margin: 0;
+    padding: 0 20px;
+	background: #e8643e;
+}
+.checkbox > label {
+	font-size: 18px;
+	margin-right: 15px;
+}
+label > input[type="checkbox"] {
+	outline: none !important;
+	position: inherit !important;
+	transform: scale(2) !important;
+	margin-right: 15px !important;
+}
+.response {
+	width: 410px;
+	margin: 0 auto;
+	margin-top: 20px;
+}
+.alert-danger {
+	color: #FFF;
+	border-color: #FF0000;
+    background-color: transparent;  
+}
+.alert-success {
+	color: #FFF;
+	border-color: #68CC15;
+    background-color: transparent;  
+}
+.close {
+	color: #FFF;
+	opacity: 1.0;	
+}
+.about {
+	margin-top: 100px;
+}
+.about-title {
+	font-size: 20px;
+}
