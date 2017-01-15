@@ -24,6 +24,10 @@ elseif (strpos($url, 'link.tl') !== false) {
 	$ext = substr($url, strrpos($url, '/') +1);
 	$raw = 'http://link.tl/fly/go.php?to='.$ext;
 }
+elseif (strpos($url, 'adfoc.us') !== false) {
+	$opt = 'us';
+	$raw = $url;
+}
 else {
 	$Output = array (
 		'Code' => '415',
@@ -42,6 +46,9 @@ $useragent = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTM
 
 curl_setopt($curl, CURLOPT_URL, $raw);
 curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+if ($opt == 'us') {
+	curl_setopt($curl, CURLOPT_HTTPHEADER, array('Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8'));
+}
 curl_setopt($curl, CURLOPT_USERAGENT, $useragent);
 
 $exec = curl_exec($curl); curl_close($curl);
@@ -85,10 +92,39 @@ if ($opt == 'ly') {
 		echo json_encode($Output);
 		exit();
 	}
-}elseif ($opt == 'tl') {
+}
+elseif ($opt == 'tl') {
 	if (preg_match_all('/<a\s+href=["\']([^"\']+)["\']/i', $exec, $m, PREG_PATTERN_ORDER)) {
 		$last = array_unique($m[1]);
 		$cleanlink = $last[2];
+		$Output = array (
+			'Code' => '200',
+			'Status' => 'Success',
+			'Message' => $cleanlink,
+			'HTMLGui' => '<div class="alert alert-success">
+			<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+			<i class="fa fa-check fa-fw"></i><a href="'.$cleanlink.'" target="_blank">Siteye Gitmek İçin Tıklayın.</a>
+			</div>'
+		);
+		echo json_encode($Output);
+		exit();
+	}else {
+		$Output = array (
+			'Code' => '500',
+			'Status' => 'Error',
+			'Message' => 'Link Hatalı Veya Geçersiz.',
+			'HTMLGui' => '<div class="alert alert-danger">
+			<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+			<i class="fa fa-exclamation fa-fw"></i>Link Hatalı Veya Geçersiz.
+			</div>'
+		);
+		echo json_encode($Output);
+		exit();
+	}
+}
+elseif ($opt == 'us') {
+	if (preg_match('/var click_url = ([^;]*)/', $exec, $m)) {
+		$cleanlink = str_replace('"', '', $m[1]);
 		$Output = array (
 			'Code' => '200',
 			'Status' => 'Success',
